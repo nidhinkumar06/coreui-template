@@ -1,10 +1,9 @@
 export default {
-    items: [
-      {
-        icon: 'cui-dashboard',
-        name: 'Dashboard',
-        url: '/dashboard',
-      },
-    ],
-  };
-  
+  items: [
+    {
+      icon: 'cui-dashboard',
+      name: 'Dashboard',
+      url: '/dashboard',
+    },
+  ],
+};
