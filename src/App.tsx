@@ -1,24 +1,30 @@
+import '@coreui/coreui/dist/css/coreui.min.css';
+import 'App.scss';
+import 'material-components-web/dist/material-components-web.min.css';
+import { DefaultLayout, SignIn } from 'navigation/routes';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
+const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
+
+toast.configure();
 
 const App: React.FC = () => {
+  const defaultLayout = (props: any) => <DefaultLayout {...props} />;
+  const signIn = (props: any) => <SignIn {...props} />;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+          <React.Suspense fallback={loading()}>
+            <Switch>
+              <Route exact={true} path="/signin" render={signIn} />
+              <Route path="/" render={defaultLayout} />
+            </Switch>
+          </React.Suspense>
+        </BrowserRouter>
     </div>
   );
 }
